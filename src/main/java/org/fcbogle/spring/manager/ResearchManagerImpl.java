@@ -9,6 +9,7 @@ import org.fcbogle.spring.domain.ResearchItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,7 @@ public class ResearchManagerImpl implements ResearchManager {
 	private ResourceLoader resourceLoader;
 
 	@Override
+	@Cacheable("allItems")
 	public List<ResearchItem> getAllResearchItems() {
 		logger.info("ResearchManagerImpl: getAllResearchItems operation invoked");
 		ObjectMapper objectMapper = new ObjectMapper();
