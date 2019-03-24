@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<title>All Research Items</title>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+</head>
+<body>
+	<div class="container">
+		<div th:replace="layout/header.html"></div>
+
+		<section id="intro-header">
+			<div class="container">
+				<ul class="nav navbar-nav" style="float: right">
+					<li><a th:href="@{/}" class="navbar-nav pull-right">Home</a></li>
+				</ul>
+				<div class="wrap-headline">
+					<h3 class="text-center">Smith & Nephew Open Research Corpus</h3>
+					<hr>
+
+				</div>
+
+			</div>
+		</section>
+
+		<ul th:each="item : ${allItems}">
+			<li class="list-group-item"><a th:text="${item.title}"
+				th:href="@{${'/research/' + item.id + '/show'}}"></a></li>
+		</ul>
+
+		<div th:replace="layout/footer.html"></div>
+	</div>
+
+</body>
+</html>
