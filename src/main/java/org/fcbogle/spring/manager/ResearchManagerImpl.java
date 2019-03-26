@@ -37,9 +37,7 @@ public class ResearchManagerImpl implements ResearchManager {
 		
 		try {
 			Resource resource = this.resourceLoader.getResource("classpath:/static/sample-S2-records");
-			InputStream input = new FileInputStream(resource.getFile());
-			//List<ResearchPaper> researchPapers = objectMapper.readValue(input, new TypeReference<List<ResearchPaper>>(){});
-			
+			InputStream input = new FileInputStream(resource.getFile());	
 			JsonFactory jf = new JsonFactory();
 			JsonParser jp = jf.createParser(input);
 			jp.setCodec(objectMapper);
@@ -48,8 +46,8 @@ public class ResearchManagerImpl implements ResearchManager {
 				ResearchItem ri = jp.readValueAs(ResearchItem.class);
 				allResearchItems.add(ri);
 				jp.nextToken();
-				logger.info("Research name: " + ri.getTitle());
-				logger.info("Research Item count: " + allResearchItems.size());
+				//logger.info("Research name: " + ri.getTitle());
+				//logger.info("Research Item count: " + allResearchItems.size());
 			}			
 			
 		} catch (Exception e) {
@@ -69,6 +67,12 @@ public class ResearchManagerImpl implements ResearchManager {
 			}
 		}
 		return null;
+	}
+	
+	public ResearchItem findUniqueItem(String id) {
+		logger.info("ResearchManagerImpl findUniqueItem() success: " + id);
+		ResearchItem found = ResearchPredicate.filterResearchItems(this.getAllResearchItems(), ResearchPredicate.matchesId(id));
+		return found;
 	}
 	
 	

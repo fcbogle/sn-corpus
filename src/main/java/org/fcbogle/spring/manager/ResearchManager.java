@@ -8,5 +8,7 @@ public interface ResearchManager {
 	
 	public List<ResearchItem> getAllResearchItems();
 	public ResearchItem getSingleItem(String id);
+	public ResearchItem findUniqueItem(String id);
+
 
 }
