@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<title>All Research Items</title>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
+</head>
+<body>
+
+	<div class="container">
+		<div th:replace="layout/header.html"></div>
+
+		<section id="intro-header">
+			<div class="container">
+				<ul class="nav navbar-nav" style="float: right">
+					<li><a th:href="@{/research}" class="navbar-nav pull-right">Back
+							to all research</a></li>
+				</ul>
+				<div class="wrap-headline">
+					<h3 class="text-center">Smith & Nephew Open Research Corpus</h3>
+					<hr>
+
+				</div>
+			</div>
+		</section>
+
+		<div class="container">
+			<section id="single-item">
+				<div class="container">
+
+					<div class="container-content-title">
+						<h4>
+							<em>Research Item: </em><strong><span
+								th:text="${single.title}"></span></strong>
+						</h4>
+					</div>
+
+					<table class="table table-striped">
+						<tr style="display: none"></tr>
+						<tr>
+							<th style="min-width: 12em">ID</th>
+							<th style="min-width: 12em">Paper Abstract</th>
+						</tr>
+						<tr>
+							<td><small><span th:text="${single.id}"></span></small></td>
+							<td><article><span th:text="${single.paperAbstract}"></span></article></td>
+						</tr>
+
+					</table>
+
+				</div>
+			</section>
+
+			<section id="single-item">
+				<div class="container">
+
+					<table class="table table-striped">
+						<tr style="display: none"></tr>
+						<tr>
+							<th style="min-width: 12em">Year</th>
+							<th style="min-width: 12em">Venue</th>
+							<th style="min-width: 12em">Journal Name</th>
+							<th style="min-width: 12em">Journal Volume</th>
+							<th style="min-width: 12em">Journal Pages</th>
+						</tr>
+						<tr>
+							<td><span th:text="${single.year}"></span></td>
+							<td><span th:text="${single.venue}"></span></td>
+							<td><span th:text="${single.journalName}"></span></td>
+							<td><span th:text="${single.journalVolume}"></span></td>
+							<td><span th:text="${single.journalPages}"></span></td>
+						</tr>
+
+					</table>
+
+				</div>
+			</section>
+
+			<section id="single-item">
+				<div class="container">
+
+					<table style="table-layout: fixed" class="table table-striped">
+						<col width="35%">
+						<col width="35%">
+						<col width="30%">
+						<tr style="display: none"></tr>
+						<tr>
+							<th style="min-width: 12em">PDF URLs</th>
+							<th style="min-width: 12em">Authors</th>
+							<th style="min-width: 12em">Sources</th>
+						</tr>
+						<tr>
+							<td style="word-wrap: break-word">
+								<ul th:each="url : ${single.pdfUrls}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><a th:href="@{${url}}" th:text="${url}"
+											th:target="_blank"></a></small></li>
+								</ul>
+							</td>
+							<td style="word-wrap: break-word">
+								<ul th:each="author : ${single.authors}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><span th:text="${author.name}"></span></small></li>
+								</ul>
+							</td>
+							<td style="word-wrap: break-word">
+								<ul th:each="source : ${single.sources}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><span th:text="${source}"></span></small></li>
+								</ul>
+							</td>
+
+						</tr>
+
+					</table>
+
+				</div>
+			</section>
+
+			<section id="single-item">
+				<div class="container">
+
+					<table style="table-layout: fixed" class="table table-striped">
+						<col width="35%">
+						<col width="35%">
+						<col width="30%">
+						<tr style="display: none"></tr>
+						<tr>
+							<th style="min-width: 12em">S2 URL</th>
+							<th style="min-width: 12em">S2 PDF URL</th>
+							<th style="min-width: 12em">Entities</th>
+						</tr>
+						<tr>
+							<td style="word-wrap: break-word">
+								<ul th:each="s2 : ${single.s2Url}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><a th:href="@{${s2}}" th:text="${s2}"
+											th:target="_blank"></a></small></li>
+								</ul>
+							</td>
+							<td style="word-wrap: break-word">
+								<ul th:each="s2pdf : ${single.s2PdfUrl}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><a th:href="@{${s2pdf}}"
+											th:text="${s2pdf}" th:target="_blank"></a></small></li>
+								</ul>
+							</td>
+							<td>
+								<ul th:each="entity : ${single.entities}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><span th:text="${entity}"
+											th:target="_blank"></span></small></li>
+								</ul>
+							</td>
+
+
+						</tr>
+
+					</table>
+
+				</div>
+			</section>
+
+			<section id="single-item">
+				<div class="container">
+
+					<table style="table-layout: fixed" class="table table-striped">
+						<col width="50%">
+						<col width="50%">
+						<tr style="display: none"></tr>
+						<tr>
+							<th style="min-width: 12em">In Citations</th>
+							<th style="min-width: 12em">Out Citations</th>
+						</tr>
+						<tr>
+							<td style="word-wrap: break-word">
+								<ul th:each="citation : ${single.inCitations}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><span th:text="${citation}"
+											th:target="_blank"></span></small></li>
+								</ul>
+							</td>
+							<td style="word-wrap: break-word">
+								<ul th:each="citation : ${single.outCitations}"
+									style="list-style-type: none; list-style-position: inside; margin: 0; padding: 0;">
+									<li><small><span th:text="${citation}"
+											th:target="_blank"></span></small></li>
+								</ul>
+							</td>
+						</tr>
+
+					</table>
+
+				</div>
+			</section>
+
+			<section id="single-item">
+				<div class="container">
+
+					<table style="table-layout: fixed" class="table table-striped">
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+						<tr style="display: none"></tr>
+						<tr>
+							<th style="min-width: 12em">Digital Id</th>
+							<th style="min-width: 12em">Digital Id Link</th>
+							<th style="min-width: 12em">Pub Med Id</th>
+						</tr>
+						<tr>
+							<td style="word-wrap: break-word"><small><span
+									th:text="${single.doi}"></span></small></td>
+							<td style="word-wrap: break-word"><a
+								th:href="@{${single.doiUrl}}" th:target="_blank"><small><span
+										th:text="${single.doiUrl}"></span></small></a></td>
+							<td style="word-wrap: break-word"><small><span
+									th:text="${single.pmid}"></span></small></td>
+
+						</tr>
+
+					</table>
+
+				</div>
+			</section>
+		</div>
+
+		<div th:replace="layout/footer.html"></div>
+	</div>
+</body>
+</html>
